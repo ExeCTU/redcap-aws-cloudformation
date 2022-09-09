@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=myredcapstack100&templateURL=https://redcap-aws-cloudformation.s3.amazonaws.com/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=exectu-redcap-instance-001&templateURL=https://redcap-aws-cloudformation.s3.amazonaws.com/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
 
 Click the launch button above to begin the process of deploying a REDCap environment on AWS CloudFormation. NOTE: This launch button already has the *US East* region pre-selected as part of the URL (i.e., &region=us-east-1), but once you click the button, you can change your preferred deployment region in AWS by selecting it from the top bar of the AWS Console, after which you may need to provide the Amazon S3 Template URL (https://s3.amazonaws.com/redcap-aws-cloudformation/00-master-rc.yaml).
 
