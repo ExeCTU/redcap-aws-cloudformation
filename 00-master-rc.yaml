@@ -161,6 +161,7 @@ Parameters:
     MaxLength: 40
     MinLength: 4    
     Type: String
+    Default: "exectu-[replace me with instance]-001"
   UseRoute53Boolean:
     AllowedValues:
       - true
@@ -216,6 +217,7 @@ Parameters:
       - eu-north-1
       - sa-east-1
       - us-gov-west-1 
+    Default: eu-west-2
     Description: Region where you configured your SES credentials.
 
 
@@ -309,13 +311,13 @@ Parameters:
   WebAsgMax:
     AllowedPattern: ^((?!0$)[1-2]?[0-9]|30)$
     ConstraintDescription: Must be a number between 1 and 30.
-    Default: 2
+    Default: 1
     Description: Specifies the maximum number of EC2 instances in the Web Autoscaling Group.  Must be greater than or equal to the Minimum REDCap Instances.
     Type: String
   WebAsgMin:
     AllowedPattern: ^([0-0]?[0-9]|10)$
     ConstraintDescription: Must be a number between 0 and 10.
-    Default: 2
+    Default: 1
     Description: Specifies the minimum number of EC2 instances in the Web Autoscaling Group.  A value of >1 will a highly available environment by placing instances in multiple availability zones.
     Type: String
   
@@ -337,13 +339,15 @@ Parameters:
     AllowedValues:
       - "Provide in S3"
       - "Download using REDCap API"
-    Default: "Download using REDCap API"
+    Default: "Provide in S3"
   RedcapS3Bucket:
     Description: "The name of the S3 bucket that contains your REDCap source zip file (e.g. myredcapsourcefiles) (used if 'Provide in S3' is selected)"
     Type: String
+    Default: "redcapdownload"
   RedcapS3Key:
     Description: "The S3 key name - the file name of the REDCap source file (e.g. redcap8.6.0.zip) located inside the bucket provided above (used if 'Provide in S3' is selected)"
     Type: String
+    Default: "redcap12.4.15.zip"
   RedcapUname:
     Description: Your REDCap Community Username (used if 'Download using REDCap API' is selected)
     Type: String
@@ -417,7 +421,7 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/01-rc-vpc.yaml
+      TemplateURL: https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/01-rc-vpc.yaml
       Parameters:
         AccessCidr: !Ref 'AccessCidr'
         RedcapS3Bucket: !Ref 'RedcapS3Bucket'
@@ -513,7 +517,7 @@ Resources:
           !GetAtt 'VPCStack.Outputs.EBInstanceProfile'
         TempEC2InstanceProfile:
           !GetAtt 'VPCStack.Outputs.TempEC2InstanceProfile'
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/02-rc-elasticbeanstalk.yaml
+      TemplateURL: https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/02-rc-elasticbeanstalk.yaml
   route53:
     Condition: DeployRoute53
     DependsOn: redcapelasticbeanstalk
@@ -528,7 +532,7 @@ Resources:
           !Ref HostedZoneName
         DomainName:
           !Ref DomainName
-      TemplateURL: https://s3.amazonaws.com/redcap-aws-cloudformation/03-rc-route53.yaml
+      TemplateURL: https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/03-rc-route53.yaml
 
 Outputs:
   REDCapURL:
