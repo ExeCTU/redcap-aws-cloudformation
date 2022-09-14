@@ -637,7 +637,7 @@ Resources:
       Description: CloudFormation Sample Aurora Cluster Parameter Group
       Family: aurora-mysql5.7
       Parameters:
-        time_zone: US/Eastern
+        time_zone: Europe/Dublin
   RDSDBParameterGroup:
     Type: AWS::RDS::DBParameterGroup
     Properties:
@@ -645,6 +645,9 @@ Resources:
       Family: aurora-mysql5.7
       Parameters:
         sql_mode: IGNORE_SPACE
+        max_allowed_packet: 1073741824
+        query_cache_limit: 16777216
+        sort_buffer_size: 2097152
   RDSDBSubnets:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
