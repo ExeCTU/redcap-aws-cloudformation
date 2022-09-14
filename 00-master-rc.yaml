@@ -161,7 +161,7 @@ Parameters:
     MaxLength: 40
     MinLength: 4    
     Type: String
-    Default: "exectu-[replace me with instance]-001"
+    Default: "exectu-replaceMeWithInstance-001"
   UseRoute53Boolean:
     AllowedValues:
       - true
