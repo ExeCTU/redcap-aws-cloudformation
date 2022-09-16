@@ -1,7 +1,7 @@
 # Deploy a REDCap environment on AWS using automation and architectural best practices
 
 ## ExeCTU
-Hello Sofia
+Hello Evan
 This has been Forked and adapted from https://github.com/vanderbilt-redcap/redcap-aws-cloudformation for ExeCTU deployment. 
 
 GitHub Actions workflow has been been setup to automatically deploy this respository to **exectu-it-s3public-001** S3 Bucket allowing the Quick Start link below to use these REDCap Cloud Formation templates.
