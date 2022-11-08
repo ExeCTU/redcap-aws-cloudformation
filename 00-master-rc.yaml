@@ -238,6 +238,14 @@ Parameters:
       - db.r4.4xlarge
       - db.r4.8xlarge
       - db.r4.16xlarge
+      - db.t3.small
+      - db.t3.medium
+      - db.r5.large
+      - db.r5.xlarge
+      - db.r5.2xlarge
+      - db.r5.4xlarge
+      - db.r5.8xlarge
+      - db.r5.16xlarge
     ConstraintDescription: Must be a valid RDS instance class.
     Default: db.t2.small
     Description: The Amazon RDS database instance class (determines processing power and memory capacity of the database).
@@ -250,6 +258,12 @@ Parameters:
     MinLength: 8
     NoEcho: true
     Type: String
+  DBBackupRetentionPeriod: 
+    Default: 35
+    Description: The number of days for which automated backups are retained.
+    Type: Number
+    MinValue: 0
+    MaxValue: 35
 
 
   WebInstanceType:
@@ -466,7 +480,7 @@ Resources:
           !GetAtt 'VPCStack.Outputs.S3AccessKey'
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
-        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
+        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], , '-redcaprepository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:

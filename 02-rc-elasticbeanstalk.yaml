@@ -605,6 +605,7 @@ Resources:
         Ref: RDSDBClusterParameterGroup
       VpcSecurityGroupIds:
         - !Ref SGData
+      BackupRetentionPeriod: !Ref DBBackupRetentionPeriod
   RDSDBInstance1:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -646,8 +647,8 @@ Resources:
       Parameters:
         sql_mode: IGNORE_SPACE
         max_allowed_packet: 1073741824
-        query_cache_limit: 16777216
-        sort_buffer_size: 2097152
+        query_cache_limit: 33554432
+        sort_buffer_size: 4194304
   RDSDBSubnets:
     Type: AWS::RDS::DBSubnetGroup
     Properties:
