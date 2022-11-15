@@ -261,9 +261,9 @@ Parameters:
   DBBackupRetentionPeriod: 
     Default: 35
     Description: The number of days for which automated backups are retained.
-    Type: Number
     MinValue: 0
     MaxValue: 35
+    Type: Number
 
 
   WebInstanceType:
@@ -453,7 +453,8 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
-        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
+ #       EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
+        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'EBEndpoint'] ], '-redcapebapp' ] ]
         SESUsername:
           !Ref SESUsername
         SESPassword:
@@ -480,7 +481,8 @@ Resources:
           !GetAtt 'VPCStack.Outputs.S3AccessKey'
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
-        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
+    #    S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
+        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'EBEndpoint'] ], '-redcaprepository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:
