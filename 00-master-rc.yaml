@@ -454,7 +454,7 @@ Resources:
     Properties:
       Parameters:
  #       EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
-        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'EBEndpoint'] ], '-redcapebapp' ] ]
+        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !Ref 'EBEndpoint'] ], '-redcapebapp' ] ]
         SESUsername:
           !Ref SESUsername
         SESPassword:
@@ -482,7 +482,7 @@ Resources:
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
     #    S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
-        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'EBEndpoint'] ], '-redcaprepository' ] ]
+        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !Ref 'EBEndpoint'] ], '-redcaprepository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:
