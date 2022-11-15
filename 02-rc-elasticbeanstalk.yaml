@@ -239,7 +239,11 @@ Parameters:
   EBBucket:
     Type: String
     Description: 'S3 Bucket used to store the application package for Elastic Beanstalk.'
-
+DBBackupRetentionPeriod: 
+    Description: The number of days for which automated backups are retained.
+    MinValue: 0
+    MaxValue: 35
+    Type: Number
 
 #Mapping to find the Amazon Linux AMI in each region.  This AMI is used for the temporary EC2 server.
 Mappings:

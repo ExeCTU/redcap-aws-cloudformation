@@ -463,6 +463,8 @@ Resources:
           !Ref SESRegion
         DatabaseMasterPassword:
           !Ref DatabaseMasterPassword
+        DBBackupRetentionPeriod:
+          !Ref DBBackupRetentionPeriod
         DatabaseInstanceType:
           !Ref DatabaseInstanceType
         MultiAZDatabase:
