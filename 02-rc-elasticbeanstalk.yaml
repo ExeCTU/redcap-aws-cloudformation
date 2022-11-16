@@ -207,6 +207,11 @@ Parameters:
     NoEcho: true
     AllowedPattern: ^([a-zA-Z0-9`~#$%^&*()_+,\\-])*$
     ConstraintDescription: The Amazon RDS master password. Letters, numbers, spaces, and these special characters `~#$%^&*()_+,-
+  DBBackupRetentionPeriod: 
+    Description: The number of days for which automated backups are retained.
+    Type: Number
+    MinValue: 0
+    MaxValue: 35
   EC2KeyName:
     Description: The EC2 Key Pair to use for the Atlas/WebAPI EC2 Instances.
     Type: AWS::EC2::KeyPair::KeyName
@@ -239,11 +244,6 @@ Parameters:
   EBBucket:
     Type: String
     Description: 'S3 Bucket used to store the application package for Elastic Beanstalk.'
-DBBackupRetentionPeriod: 
-    Description: The number of days for which automated backups are retained.
-    MinValue: 0
-    MaxValue: 35
-    Type: Number
 
 #Mapping to find the Amazon Linux AMI in each region.  This AMI is used for the temporary EC2 server.
 Mappings:

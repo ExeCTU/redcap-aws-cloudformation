@@ -103,7 +103,7 @@ Metadata:
       DatabaseMasterPassword:
         default: 'DB Master Password & initial password for REDCap user "redcap_admin"'
       DBBackupRetentionPeriod: 
-        default: 35
+        default: 'DB Backup Retention Period'
 
 
       WebAsgMax:
