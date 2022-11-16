@@ -41,6 +41,7 @@ Metadata:
         - MultiAZDatabase
         - DatabaseInstanceType
         - DatabaseMasterPassword
+        - DBBackupRetentionPeriod
     - Label:
         default: Web Tier
       Parameters:
@@ -101,6 +102,8 @@ Metadata:
         default: DB Instance Class
       DatabaseMasterPassword:
         default: 'DB Master Password & initial password for REDCap user "redcap_admin"'
+      DBBackupRetentionPeriod: 
+        default: 35
 
 
       WebAsgMax:
