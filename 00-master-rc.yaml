@@ -58,6 +58,7 @@ Metadata:
         - Redcapver        
         - RedcapS3Bucket
         - RedcapS3Key
+        - RedcapS3BucketRegion
 
     - Label:
         default: VPC Networking (changing this is optional)
@@ -126,7 +127,9 @@ Metadata:
       RedcapS3Bucket:
         default: S3 Bucket
       RedcapS3Key:
-        default: S3 Key
+        default: S3 Key      
+      RedcapS3BucketRegion:
+        default: S3 Bucket Region
 
       VPCcidr:
         default: VPC CIDR Range
@@ -203,23 +206,11 @@ Parameters:
   SESRegion:
     Type: String
     AllowedValues:
-      - us-east-2
-      - us-east-1
-      - us-west-1
-      - us-west-2
-      - ap-south-1
-      - ap-northeast-2
-      - ap-southeast-1
-      - ap-southeast-2
-      - ap-northeast-1
-      - ca-central-1
       - eu-central-1
       - eu-west-1
       - eu-west-2
       - eu-west-3
       - eu-north-1
-      - sa-east-1
-      - us-gov-west-1 
     Default: eu-west-2
     Description: Region where you configured your SES credentials.
 
@@ -364,7 +355,16 @@ Parameters:
   RedcapS3Key:
     Description: "The S3 key name - the file name of the REDCap source file (e.g. redcap8.6.0.zip) located inside the bucket provided above (used if 'Provide in S3' is selected)"
     Type: String
-    Default: "redcap12.4.15.zip"
+    Default: "redcap12.4.24.zip"
+  RedcapS3BucketRegion:
+    Description: "AWS Region of the S3 bucket that contains your REDCap source zip file (used if 'Provide in S3' is selected)"
+    Type: String
+    AllowedValues:
+      - eu-central-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+    Default: eu-west-2
   RedcapUname:
     Description: Your REDCap Community Username (used if 'Download using REDCap API' is selected)
     Type: String
@@ -456,8 +456,8 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
-   #     EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
-        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Ref 'EBEndpoint', '-ebapp' ] ]
+        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
+   #     EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Ref 'EBEndpoint', '-ebapp' ] ]
         SESUsername:
           !Ref SESUsername
         SESPassword:
@@ -486,8 +486,8 @@ Resources:
           !GetAtt 'VPCStack.Outputs.S3AccessKey'
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
-   #     S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
-        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-',  !Ref 'EBEndpoint', '-repository' ] ]
+        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
+   #     S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-',  !Ref 'EBEndpoint', '-repository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:
@@ -504,6 +504,8 @@ Resources:
           !Ref RedcapS3Bucket
         RedcapS3Key:
           !Ref RedcapS3Key
+        RedcapS3BucketRegion:
+          !Ref RedcapS3BucketRegion
         RedcapUname:
           !Ref RedcapUname
         RedcapPword:

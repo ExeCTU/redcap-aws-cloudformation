@@ -191,6 +191,14 @@ Parameters:
   RedcapS3Key:
     Description: "S3 Key that points to your Redcap Binary file"
     Type: String
+  RedcapS3BucketRegion:
+    Description: "AWS Region of the S3 bucket that contains your REDCap binary file"
+    Type: String
+    AllowedValues:
+      - eu-central-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
   RedcapUname:
     Description: Your REDCap Community Username (used if 'Download using REDCap API' is selected)
     Type: String
@@ -827,8 +835,8 @@ Resources:
 
                     #Apply additional PHP configuration as specified by REDCap
                     echo "max_input_vars = 100000" >> /etc/php.ini
-                    sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 32M/" /etc/php.ini
-                    sed -i "s/post_max_size = 8M/post_max_size = 32M/" /etc/php.ini
+                    sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 512M/" /etc/php.ini
+                    sed -i "s/post_max_size = 8M/post_max_size = 512M/" /etc/php.ini
 
                     if [ ${Protocol} == 'https://' ]; then
                       echo "session.cookie_secure = on" >> /etc/php.ini
@@ -928,18 +936,18 @@ Resources:
 
           # Install SSM client
           yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-          restart amazon-ssm-agent
+          systemctl restart amazon-ssm-agent
 
           aws configure set metadata_service_timeout 10
           aws configure set metadata_service_num_attempts 5
           #Use cfn-init to grab and apply the files specified in the above UserData
           /opt/aws/bin/cfn-init --verbose --stack ${AWS::StackName} --resource TempEC2Instance --region ${AWS::Region}
           cd /tmp
-          sudo service awslogs start
+          sudo systemctl start awslogsd
 
           if [ "${S3orAPI}" = "Provide in S3" ]; then
             #Get the REDCap source file specified by the user
-            aws s3 cp s3://${RedcapS3Bucket}/${RedcapS3Key} .
+            aws s3 cp s3://${RedcapS3Bucket}/${RedcapS3Key} . --region ${RedcapS3BucketRegion}
           else
             curl -o redcap.zip -d "username=${RedcapUname}&password=${RedcapPword}&version=${Redcapver}&install=1" -X POST https://redcap.vanderbilt.edu/plugins/redcap_consortium/versions.php
             export REDCAP_FILE_NAME=redcap.zip
