@@ -456,8 +456,8 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       Parameters:
- #       EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
-        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !Ref 'EBEndpoint'] ], '-redcapebapp' ] ]
+   #     EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
+        EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Ref 'EBEndpoint', '-ebapp' ] ]
         SESUsername:
           !Ref SESUsername
         SESPassword:
@@ -486,8 +486,8 @@ Resources:
           !GetAtt 'VPCStack.Outputs.S3AccessKey'
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
-    #    S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
-        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !Ref 'EBEndpoint'] ], '-redcaprepository' ] ]
+   #     S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
+        S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-',  !Ref 'EBEndpoint', '-repository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:
