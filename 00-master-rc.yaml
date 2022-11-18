@@ -355,7 +355,7 @@ Parameters:
   RedcapS3Key:
     Description: "The S3 key name - the file name of the REDCap source file (e.g. redcap8.6.0.zip) located inside the bucket provided above (used if 'Provide in S3' is selected)"
     Type: String
-    Default: "redcap12.4.25.zip"
+    Default: "redcap12.4.25_with_xmodules.zip"
   RedcapS3BucketRegion:
     Description: "AWS Region of the S3 bucket that contains your REDCap source zip file (used if 'Provide in S3' is selected)"
     Type: String

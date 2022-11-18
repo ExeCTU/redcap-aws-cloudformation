@@ -738,7 +738,18 @@ Resources:
                           UPDATE redcap_config SET value = '${S3Bucket}' WHERE field_name = 'amazon_s3_bucket';
                           UPDATE redcap_config SET value = '${S3AccessKey}' WHERE field_name = 'amazon_s3_key';
                           UPDATE redcap_config SET value = '${S3SecretKey}' WHERE field_name = 'amazon_s3_secret'; 
-                          UPDATE redcap_config SET value = '${AWS::Region}' WHERE field_name = 'amazon_s3_endpoint';     
+                          UPDATE redcap_config SET value = '${AWS::Region}' WHERE field_name = 'amazon_s3_endpoint';
+
+                          -- Add ExeCTU custom configurations
+                          UPDATE redcap_config set value = 'svc_redcap@exeter.ac.uk' where field_name = 'from_email';
+                          UPDATE redcap_config set value = '<p><img id="logo" style="display: block; margin-left: auto; margin-right: auto;" src="//www.exeter.ac.uk/media/universityofexeter/webteam/styleassets/images/UOE-green.svg" alt="University of Exeter" width="238" height="81" /></p><h2 style="text-align: center;">Exeter Clinical Trials Unit </h2><h2 style="text-align: center;"><span style="background-color: #fbeeb8;"><strong><span style="color: #e67e23;">Staging Enviorment</span></strong></span> </h2>' where field_name = 'homepage_announcement';
+                          UPDATE redcap_config set value = '<p><a href="http://www.exeter.ac.uk/research/ctu" target="_blank" rel="noopener noreferrer"><img id="logo" style="display: block; margin-left: auto; margin-right: auto;" src="//www.exeter.ac.uk/media/universityofexeter/webteam/styleassets/images/UOE-green.svg" alt="University of Exeter" width="176" height="60"></a></p><p style="text-align: center;"><strong>For more information about Exeter Clinical Trials Unit (ExeCTU) visit our website: <a href="https://www.exeter.ac.uk/research/ctu/" target="_blank" rel="noopener noreferrer">www.exeter.ac.uk/research/ctu</a></strong></p>' where field_name = 'homepage_custom_text';
+                          UPDATE redcap_config set value = '1' where field_name = 'homepage_announcement_login';
+                          UPDATE redcap_config set value = 'ctusupport@exeter.ac.uk' where field_name = 'homepage_contact_email';
+                          UPDATE redcap_config set value = 'Tim Cranston or Sofia Sanabria' where field_name = 'homepage_contact';
+                          UPDATE redcap_config set value = 'University of Exeter' where field_name = 'institution';
+                          UPDATE redcap_config set value = 'University of Exeter Clinical Trials Unit' where field_name = 'site_org_type';
+
                           -- Manually set flag to indicate that this installation is being run on AWS CloudFormation
                           REPLACE INTO redcap_config (field_name, value) VALUES ('aws_quickstart', '1'); 
                           -- Add second MySQL user with user and password in *plain text* (will be auto-encrypted by REDCap afterward)
