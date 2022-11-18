@@ -355,7 +355,7 @@ Parameters:
   RedcapS3Key:
     Description: "The S3 key name - the file name of the REDCap source file (e.g. redcap8.6.0.zip) located inside the bucket provided above (used if 'Provide in S3' is selected)"
     Type: String
-    Default: "redcap12.4.24.zip"
+    Default: "redcap12.4.25.zip"
   RedcapS3BucketRegion:
     Description: "AWS Region of the S3 bucket that contains your REDCap source zip file (used if 'Provide in S3' is selected)"
     Type: String
@@ -457,7 +457,6 @@ Resources:
     Properties:
       Parameters:
         EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcapebapp' ] ]
-   #     EBBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Ref 'EBEndpoint', '-ebapp' ] ]
         SESUsername:
           !Ref SESUsername
         SESPassword:
@@ -487,7 +486,6 @@ Resources:
         S3SecretKey:
           !GetAtt 'VPCStack.Outputs.S3SecretKey'
         S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-', !Select [ 1, !Split [ '-', !GetAtt 'VPCStack.Outputs.SubnetPublicA'] ], '-redcaprepository' ] ]
-   #     S3FileRepositoryBucket: !Join [ "", [ !Ref "AWS::AccountId", '-',  !Ref 'EBEndpoint', '-repository' ] ]
         EBEndpoint:
           !Ref EBEndpoint
         UseRoute53Boolean:
