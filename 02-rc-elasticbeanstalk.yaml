@@ -838,6 +838,9 @@ Resources:
                     sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 512M/" /etc/php.ini
                     sed -i "s/post_max_size = 8M/post_max_size = 512M/" /etc/php.ini
 
+                    #Apply addition ngix configuration for file uploads 
+                    sed -i 's/http {/& \n    client_max_body_size 512M\;/' /etc/nginx/nginx.conf
+
                     if [ ${Protocol} == 'https://' ]; then
                       echo "session.cookie_secure = on" >> /etc/php.ini
                     fi
