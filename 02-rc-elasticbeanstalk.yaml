@@ -659,7 +659,7 @@ Resources:
       Parameters:
         sql_mode: IGNORE_SPACE
         max_allowed_packet: 1073741824
-        query_cache_limit: 33554432
+        query_cache_limit: 61258864
         sort_buffer_size: 4194304
   RDSDBSubnets:
     Type: AWS::RDS::DBSubnetGroup
@@ -749,6 +749,8 @@ Resources:
                           UPDATE redcap_config set value = 'Tim Cranston or Sofia Sanabria' where field_name = 'homepage_contact';
                           UPDATE redcap_config set value = 'University of Exeter' where field_name = 'institution';
                           UPDATE redcap_config set value = 'University of Exeter Clinical Trials Unit' where field_name = 'site_org_type';
+                          UPDATE redcap_config set value = 'ctusupport@exeter.ac.uk' where field_name = 'project_contact_email';
+                          UPDATE redcap_config set value = 'Tim Cranston or Sofia Sanabria' where field_name = 'project_contact_name';
 
                           -- Manually set flag to indicate that this installation is being run on AWS CloudFormation
                           REPLACE INTO redcap_config (field_name, value) VALUES ('aws_quickstart', '1'); 
