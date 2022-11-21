@@ -2,26 +2,27 @@
 
 ## ExeCTU
 
-This has been Forked and adapted from https://github.com/vanderbilt-redcap/redcap-aws-cloudformation for ExeCTU deployment. This defaults to version 12.4.25 with the following modules
+This has been Forked and adapted from https://github.com/vanderbilt-redcap/redcap-aws-cloudformation for ExeCTU deployment. This defaults to version 12.4.25 with the following modules (*note the modules have been added to the REDCap.zip in the `redcap/modules` folder, and are **not** managed by this deployment script!*)
 
-add_validation_types_v1.0.3
-admin_dash_v4.0.6
-advanced_reports_v1.3.1
-auto_dags_v1.2.3
-autoschedule_v1.0.1
-cross_project_piping_v1.4.12
-minimization_v1.2.2
-realtime_randomization_v1.0.1
-redcap_ui_tweaker_v1.5.0
-redcap_instance_tagger_v1.7
+- [add_validation_types_v1.0.3]()
+- [admin_dash_v4.0.6](https://github.com/ui-icts/redcap-admin-dashboard)
+- [advanced_reports_v1.3.1](https://github.com/Nottingham-CTU/Advanced-Reports)
+- [auto_dags_v1.2.3](https://github.com/vanderbilt-redcap/auto-dags-module)
+- [autoschedule_v1.0.1](https://github.com/lsgs/redcap-autoschedule)
+- [cross_project_piping_v1.4.12](https://github.com/vanderbilt-redcap/cross-project-piping-module)
+- [minimization_v1.2.2](https://github.com/Nottingham-CTU/REDCap-Minimization)
+- [realtime_randomization_v1.0.1](https://github.com/susom/realtime-randomization/)
+- [redcap_ui_tweaker_v1.5.0](https://github.com/Nottingham-CTU/REDCap-UI-Tweaker)
+- [redcap_instance_tagger_v1.7](https://github.com/biggeeves/Instance-Marker)
 
-<!--  GitHub Actions workflow has been been setup to automatically deploy this respository to **exectu-it-s3public-001** S3 Bucket allowing the Quick Start link below to use these REDCap Cloud Formation templates. (commented out as GitHub Actions workflow only set for MASTER branch) -->
+GitHub Actions workflow has been been setup to automatically deploy this respository to **exectu-it-s3public-001** S3 Bucket allowing the Quick Start link below to use these REDCap Cloud Formation templates. 
 
 The S3 bucket **redcapdownload** is used to store REDCap download zip file for deployment. 
 
 ## Quick Start
 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=exectu-redcap-instance-001&templateURL=https://raw.githubusercontent.com/ExeCTU/redcap-aws-cloudformation/51b5fa27167e47dc6e0b30a2cbbfc2286b3e493c/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=exectu-redcap-instance-001&templateURL=https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/12.4.25-Deployment/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
+
 
 Click the launch button above to begin the process of deploying a REDCap environment on AWS CloudFormation. NOTE: This launch button already has the *EU West 2* region pre-selected as part of the URL (i.e., &region=us-west-2), but once you click the button, you can change your preferred deployment region in AWS by selecting it from the top bar of the AWS Console, after which you may need to provide the Amazon S3 Template URL (https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/00-master-rc.yaml).
 
