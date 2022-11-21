@@ -10,7 +10,7 @@ The S3 bucket **redcapdownload** is used to store REDCap download zip file for d
 
 ## Quick Start
 
-<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=exectu-redcap-instance-001&templateURL=https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
+<a href="https://console.aws.amazon.com/cloudformation/home?region=eu-west-2#/stacks/new?stackName=exectu-redcap-instance-001&templateURL=https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/master/00-master-rc.yaml" target="_blank"><img src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"/></a> 
 
 Click the launch button above to begin the process of deploying a REDCap environment on AWS CloudFormation. NOTE: This launch button already has the *EU West 2* region pre-selected as part of the URL (i.e., &region=us-west-2), but once you click the button, you can change your preferred deployment region in AWS by selecting it from the top bar of the AWS Console, after which you may need to provide the Amazon S3 Template URL (https://exectu-it-s3public-001.s3.eu-west-2.amazonaws.com/00-master-rc.yaml).
 
