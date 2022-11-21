@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - 12.4.25-Deployment
 
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
           aws-region: eu-west-2
       - name: Copy to S3
-        run: aws s3 sync . s3://exectu-it-s3public-001 --exclude '.github/*' --exclude '.git/*'
+        run: aws s3 sync . s3://exectu-it-s3public-001/12.4.25-Deployment --exclude '.github/*' --exclude '.git/*'
