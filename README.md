@@ -2,9 +2,9 @@
 
 ## ExeCTU
 
-This has been Forked and adapted from https://github.com/vanderbilt-redcap/redcap-aws-cloudformation for ExeCTU deployment. This defaults to version 12.4.25 with the following modules (*note the modules have been added to the REDCap.zip in the `redcap/modules` folder, and are **not** managed by this deployment script!*)
+This has been Forked and adapted from https://github.com/vanderbilt-redcap/redcap-aws-cloudformation for ExeCTU deployment. This defaults to version 12.4.25 with the following modules *(**Note** the modules have been added to the `redcap12.4.25_with_xmodules.zip` in the `redcap/modules` folder, and are **not** managed by this deployment script!)*
 
-- [add_validation_types_v1.0.3]()
+- [add_validation_types_v1.0.3](https://github.com/uwctri/AddValidationTypes)
 - [admin_dash_v4.0.6](https://github.com/ui-icts/redcap-admin-dashboard)
 - [advanced_reports_v1.3.1](https://github.com/Nottingham-CTU/Advanced-Reports)
 - [auto_dags_v1.2.3](https://github.com/vanderbilt-redcap/auto-dags-module)
