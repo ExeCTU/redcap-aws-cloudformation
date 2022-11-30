@@ -14,6 +14,7 @@ This has been Forked and adapted from https://github.com/vanderbilt-redcap/redca
 - [realtime_randomization_v1.0.1](https://github.com/susom/realtime-randomization/)
 - [redcap_ui_tweaker_v1.5.0](https://github.com/Nottingham-CTU/REDCap-UI-Tweaker)
 - [redcap_instance_tagger_v1.7](https://github.com/biggeeves/Instance-Marker)
+- [validation_tweaker_v1.1.1](https://github.com/Nottingham-CTU/Validation-Tweaker)
 
 GitHub Actions workflow has been been setup to automatically deploy this respository to **exectu-it-s3public-001** S3 Bucket allowing the Quick Start link below to use these REDCap Cloud Formation templates. 
 
