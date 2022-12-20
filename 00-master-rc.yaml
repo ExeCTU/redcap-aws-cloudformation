@@ -167,7 +167,7 @@ Parameters:
     MaxLength: 40
     MinLength: 4    
     Type: String
-    Default: "exectu-replaceMeWithInstance-001"
+    Default: "exectu-rc-replaceMeWithInstance-001"
   UseRoute53Boolean:
     AllowedValues:
       - true
@@ -253,7 +253,7 @@ Parameters:
     NoEcho: true
     Type: String
   DBBackupRetentionPeriod: 
-    Default: 35
+    Default: 14
     Description: The number of days for which automated backups are retained.
     MinValue: 0
     MaxValue: 35
