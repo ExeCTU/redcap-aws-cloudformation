@@ -814,6 +814,9 @@ Resources:
                     #only do the below tasks if it's the first deployment to this server.
                     if [ ! -f /eb-configured ]; then
 
+                    #set time_zone
+                    timedatectl set-timezone Europe/London
+
                     systemctl restart nginx
                     systemctl restart php-fpm
 
@@ -850,6 +853,9 @@ Resources:
                     echo "max_input_vars = 100000" >> /etc/php.ini
                     sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 512M/" /etc/php.ini
                     sed -i "s/post_max_size = 8M/post_max_size = 512M/" /etc/php.ini
+                    #time_zone
+                    sed -i "s/;date.timezone =/date.timezone = Europe\/London/" /etc/php.ini
+                    sed -i "s/date.timezone = UTC/date.timezone = Europe\/London/" /etc/php.d/aws.ini
 
                     #Apply addition ngix configuration for file uploads 
                     sed -i 's/http {/& \n    client_max_body_size 512M\;/' /etc/nginx/nginx.conf
